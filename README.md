@@ -1,3 +1,4 @@
+
 # WIF Serialization
 
 WIF is the serialization of a Private Key.
@@ -22,9 +23,10 @@ print(encode_base58_checksum(b'\xef'+s))
 print(encode_base58_checksum(b'\xef'+s+b'\x01'))
 ```
 
+### Try it
+
 
 ```python
-# Exercise 3.1
 from helper import encode_base58_checksum
 
 components = (
@@ -41,4 +43,21 @@ components = (
     # append b'\x01' for compressed
     # base58 the whole thing with checksum
     # print the wif
+```
+
+### Test Driven Exercise
+
+
+```python
+# Exercise 3.2
+from ecc import PrivateKey
+
+class PrivateKey(PrivateKey):
+
+    def wif(self, compressed=True, testnet=False):
+        # convert the secret from integer to a 32-bytes in big endian using num.to_bytes(32, 'big')
+        # prepend b'\xef' on testnet, b'\x80' on mainnet
+        # append b'\x01' if compressed
+        # encode_base58_checksum the whole thing
+        pass
 ```
